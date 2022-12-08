@@ -8,7 +8,7 @@ export const TIMES = {
     scaler: 0.1,
     getter: () => new Date().getMilliseconds(),
     background: `linear-gradient(180deg, #A0FF27 0%, #007256 100%)`,
-    transitionDuration: "5ms",
+    transitionDuration: "0ms",
   },
   SECONDS: {
     label: "Seconds",
