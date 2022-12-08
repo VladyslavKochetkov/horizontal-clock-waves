@@ -1,29 +1,35 @@
 import { useEffect, useState } from "react";
 import Bar from "./Bar";
+import { format } from "date-fns";
+import pluralize from "pluralize";
 
 export const TIMES = {
   MILLISECONDS: {
-    label: "Milliseconds",
+    label: () =>
+      `${format(new Date(), "SSS")} ${pluralize(
+        "Milliseconds",
+        new Date().getHours() + 1
+      )}`,
     max: 1000,
-    scaler: 0.1,
+    scaler: 0.01,
     getter: () => new Date().getMilliseconds(),
     background: `linear-gradient(180deg, #A0FF27 0%, #007256 100%)`,
     transitionDuration: "0ms",
   },
   SECONDS: {
-    label: "Seconds",
+    label: () => format(new Date(), "s") + " Seconds",
     max: 60,
     getter: () => new Date().getSeconds(),
     background: `linear-gradient(180deg, #FFA149 0%, #AB0000 100%)`,
   },
   MINUTES: {
-    label: "Minutes",
+    label: () => format(new Date(), "m") + " Minutes",
     max: 60,
     getter: () => new Date().getMinutes(),
     background: `linear-gradient(180deg, #FF00B8 0%, #7F00AB 100%)`,
   },
   HOURS: {
-    label: "Hours",
+    label: () => format(new Date(), "h a"),
     max: 24,
     getter: () => new Date().getHours(),
     background: `linear-gradient(180deg, #00D1FF 0%, #0026AB 100%)`,
@@ -75,9 +81,7 @@ const Timer = ({
 
   return (
     <div>
-      <h1 className="time-label">
-        {time + 1} {label}
-      </h1>
+      <h1 className="time-label">{label()}</h1>
       <div className="bar-container">{children}</div>
     </div>
   );

@@ -1,6 +1,11 @@
+import dynamic from 'next/dynamic';
 import Head from 'next/head'
 import Timer, { TIMES } from '../components/Timer'
 import styles from '../styles/Home.module.css'
+
+const ClientOnlyTime = dynamic(() => import("../components/Timer"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -11,10 +16,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Timer {...TIMES["HOURS"]}/>
-      <Timer {...TIMES["MINUTES"]}/>
-      <Timer {...TIMES["SECONDS"]}/>
-      <Timer {...TIMES["MILLISECONDS"]} />
+      <ClientOnlyTime {...TIMES["HOURS"]}/>
+      <ClientOnlyTime {...TIMES["MINUTES"]}/>
+      <ClientOnlyTime {...TIMES["SECONDS"]}/>
+      <ClientOnlyTime {...TIMES["MILLISECONDS"]} />
     </div>
   )
 }
