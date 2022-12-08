@@ -15,12 +15,24 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+body {
+  background-color: #1F1F1F;
+}
+
+.time-label {
+  text-align: center;
+  color: #fff
+}
+
+.bar-container {
+  display: flex;
+  align-items: flex-end;
+  height: 100px;
+}
+
+
+.bar {
+  flex: 1;
+  border-radius: 5px 5px 0 0;
+  transition: ease-out 0.2s all
 }
